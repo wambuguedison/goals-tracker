@@ -1,0 +1,15 @@
+{
+  "name": "edgoals",
+  "version": "1.0.0",
+  "description": "simple goals tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "goals",
+    "tracker"
+  ],
+  "author": "eddiewaweru",
+  "license": "ISC"
+}
