@@ -7,10 +7,12 @@ app.set('view engine', 'hbs');
 
 app.engine( 'hbs', hbs({
   extname: 'hbs',
-  defaultView: 'default',
+  defaultView: 'main',
   layoutsDir: __dirname + '/views/pages/',
   partialsDir: __dirname + '/views/partials/'
 }));
+
+app.use(express.static('public'));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
