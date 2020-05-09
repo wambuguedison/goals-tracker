@@ -1,6 +1,16 @@
 const express = require('express');
+const hbs = require('express-handlebars');
 
 const app = express();
+
+app.set('view engine', 'hbs');
+
+app.engine( 'hbs', hbs({
+  extname: 'hbs',
+  defaultView: 'default',
+  layoutsDir: __dirname + '/views/pages/',
+  partialsDir: __dirname + '/views/partials/'
+}));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -9,7 +19,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", (res, req, next) => {
+app.use("/",(res, req, next) => {
   res.status(200).json({
     "message": "atleast it runs for now"
   });
