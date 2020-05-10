@@ -8,7 +8,7 @@ app.set('view engine', 'hbs');
 app.engine( 'hbs', hbs({
   extname: 'hbs',
   defaultView: 'main',
-  layoutsDir: __dirname + '/views/pages/',
+  layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/'
 }));
 
@@ -21,10 +21,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/",(res, req, next) => {
-  res.status(200).json({
-    "message": "atleast it runs for now"
-  });
+app.use("/",(req, res, next) => {
+  let obj = [{
+    test: "yes"
+  },{
+    test: "no"
+  }];
+  let obj2 ={
+    objects: obj,
+    helpers: "help"
+  }
+  res.render('index', obj);
   console.log('atleast it runs');
 });
 
