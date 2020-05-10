@@ -31,7 +31,7 @@ app.use("/",(req, res, next) => {
     objects: obj,
     helpers: "help"
   }
-  res.render('index', obj);
+  res.render('index', obj2);
   console.log('atleast it runs');
 });
 
