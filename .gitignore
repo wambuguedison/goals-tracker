@@ -1,2 +1,5 @@
 node_modules
 models/goals.db
+goals.db
+models/ins.js
+views/test.hbs
