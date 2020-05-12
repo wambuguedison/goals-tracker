@@ -42,7 +42,6 @@ app.get('/', (req, res, next) => {
 
 app.get('/edit/:id', (req, res, next) => {
   let id = req.params.id.replace(':', '');
-  console.log(id)
   goals.find({ _id: id }, (err, doc) => {
     if(err) {
       console.log(err)
@@ -54,20 +53,27 @@ app.get('/edit/:id', (req, res, next) => {
   });
 });
 
-app.put('/update', (req, res, next) => {
+app.post('/update', (req, res, next) => {
   const goal = {
-    _id: req.body.id,
     title: req.body.title,
     description: 'goal description',
     imageUrl: '',
     successes: 0,
     deleted: 0
   };
-  console.log(goal)
-  let update = {
-    update: 'updated'
-  }
-  res.render('update', update)
+  goals.update({_id: req.body.id}, goal, {}, function (err, numReplaced) {
+    if(err){
+      res.status(400).json({
+        error: error
+      });
+    }
+    let update = {
+      title: goal.title,
+      update: 'updated'
+    }
+    res.render('update', update)
+  });
+  
   //next()
 });
 
