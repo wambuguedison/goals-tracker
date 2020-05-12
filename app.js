@@ -88,7 +88,7 @@ app.post('/update', (req, res, next) => {
     successes: 0,
     deleted: 0
   };
-  goals.update({_id: req.body.id}, goal, {}, function (err, numReplaced) {
+  goals.update({_id: req.body.id}, goal, {}, (err, numReplaced) => {
     if(err){
       res.status(400).json({
         error: err
@@ -100,8 +100,6 @@ app.post('/update', (req, res, next) => {
     }
     res.render('update', update);
   });
-  
-  //next()
 });
 
 app.get('/delete/:id', (req, res, next) => {
