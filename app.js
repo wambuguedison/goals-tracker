@@ -64,17 +64,43 @@ app.post('/update', (req, res, next) => {
   goals.update({_id: req.body.id}, goal, {}, function (err, numReplaced) {
     if(err){
       res.status(400).json({
-        error: error
+        error: err
       });
     }
     let update = {
       title: goal.title,
       update: 'updated'
     }
-    res.render('update', update)
+    res.render('update', update);
   });
   
   //next()
 });
+
+app.get('/delete/:id', (req, res, next) => {
+  let id = req.params.id.replace(':', '');
+  goals.find({ _id: id }, (err, doc) => {
+    if(err) {
+      console.log(err)
+    }
+    let delete_object = {
+      del_goal: doc
+    }
+    res.render('update', delete_object);
+  });
+});
+
+
+app.get('/del_goal/:id', (req, res, next) => {
+  let id = req.params.id.replace(':', '');
+  goals.remove({ _id: id }, {}, (err, numRemoved) => {
+    let delete_goal = {
+      delete: 'deleted'
+    }
+    res.render('update', delete_goal);
+  });
+});
+
+
 
 module.exports = app;
