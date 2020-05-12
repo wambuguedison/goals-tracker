@@ -40,6 +40,33 @@ app.get('/', (req, res, next) => {
   });
 });
 
+app.get('/add', (req, res, next) => {
+  let add = {
+    add_new: 'added'
+  }
+  res.render('add', add)
+});
+
+app.post('/add_goal', (req, res, next) => {
+  const goal = {
+    title: req.body.title,
+    description: req.body.description,
+    imageUrl: '',
+    successes: 0,
+    deleted: 0
+  };
+  goals.insert(goal,(err, doc) => {
+  if(err){
+    console.error(err)
+  }
+  let added = {
+    title: doc.title,
+    add: 'added'
+  }
+  res.render('add', added)
+})
+});
+
 app.get('/edit/:id', (req, res, next) => {
   let id = req.params.id.replace(':', '');
   goals.find({ _id: id }, (err, doc) => {
