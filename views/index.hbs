@@ -1,13 +1,15 @@
-<h1>hello</h1>
+<h1>Hello</h1>
 
 <a href='/add'>Add a goal</a>
 
-<ul>
-  {{#each goals}}
-  <li>
-    {{title}}
-    <a href="/edit/:{{_id}}">edit</a>
-    <a href="/delete/:{{_id}}">delete</a>
-  </li>
-  {{/each}}
-</ul>
+<div class="goals">
+{{#each goals}}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{description}}</p>
+    <a href="/goal/:{{_id}}" class="card-link" data-toggle="modal" data-target="#more_details">More details...</a>
+  </div>
+</div>
+{{/each}}
+</div><!--goals-->
