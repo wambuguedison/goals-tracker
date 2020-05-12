@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('express-handlebars');
+const goals = require('./models/db')
 
 const app = express();
 
@@ -21,18 +22,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/",(req, res, next) => {
-  let obj = [{
-    test: "yes"
-  },{
-    test: "no"
-  }];
-  let obj2 ={
-    objects: obj,
-    helpers: "help"
-  }
-  res.render('index', obj2);
-  console.log('atleast it runs');
+app.get('/', (req, res, next) => {
+  goals.find({}, (err, docs) => {
+    if(err){
+      console.log(err)
+    }
+    let obj3 = {
+      goals: docs
+    }
+    res.render('index', obj3);
+  });
 });
 
 module.exports = app;
