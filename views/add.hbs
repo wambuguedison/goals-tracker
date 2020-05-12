@@ -1,0 +1,23 @@
+{{#if add}}
+<p>{{title}} added</p>
+<a href="/">go back</a>
+{{/if}}
+
+{{#if add_new}}
+<form action="/add_goal" method="POST">
+  <input
+    type="text"
+    placeholder="title"
+    name="title"
+    id="title"
+  />
+  <input
+    type="text"
+    placeholder="description"
+    name="description"
+    id="description"
+  />
+  <input type="submit" value="add" />
+</form>
+<a href="/">cancel</a>
+{{/if}}
