@@ -1,23 +1,53 @@
-{{#if add}}
-<p>{{title}} added</p>
-<a href="/">go back</a>
+{{#if add_new}}
+<h3>Add a new goal</h3>
+<a class="go-back" href="/">Go back</a>
+<form action="/add_goal" method="POST">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title" id="title"
+      placeholder="Enter a title"
+    >
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      class="form-control"
+      id="description"
+      name="description"
+      rows="3"
+    >
+    </textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">
+    Submit
+  </button>
+  <a class="btn btn-danger form-cancel" href="/">Cancel</a>
+</form>
 {{/if}}
 
-{{#if add_new}}
-<form action="/add_goal" method="POST">
-  <input
-    type="text"
-    placeholder="title"
-    name="title"
-    id="title"
-  />
-  <input
-    type="text"
-    placeholder="description"
-    name="description"
-    id="description"
-  />
-  <input type="submit" value="add" />
-</form>
-<a href="/">cancel</a>
+{{#if add}}
+<div class="alert alert-success mt-5" role="alert">
+  <h4 class="alert-heading">Goal Added Successfully</h4>
+  <h6>{{title}}</h6>
+  <hr>
+  <p>{{description}}</p>
+  <hr>
+  <div class="d-flex justify-content-around">
+    <a
+      class="btn btn-sm btn-warning"
+      href="/edit/:{{id}}"
+    >
+      Edit
+    </a>
+    <a
+      class="btn btn-sm btn-danger"
+      href="/delete/:{{id}}"
+    >
+      Delete
+    </a>
+   </div>
+</div>
 {{/if}}

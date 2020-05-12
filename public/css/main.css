@@ -7,6 +7,12 @@ body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
+/* universal styles */
+.go-back {
+  float: right;
+  margin-top: -2rem;
+}
+
 /* home page*/
 .goals {
   display: inline-flex;
@@ -15,6 +21,11 @@ body {
 .goals .card {
   margin: .5rem;
   width: 45%;
+}
+
+/* add a goal*/
+.form-cancel {
+  float: right;
 }
 
 .footer {
