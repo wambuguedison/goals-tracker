@@ -1,3 +1,15 @@
+{{#if del_goal}}
+{{#each del_goal}}
+<p>Are you sure to delete {{title}}</p>
+<!--<form action="" method="POST">
+  <input type="submit" value="yes" />
+</form>-->
+<a href="/del_goal/:{{_id}}">yes</a>
+<a href="/">no</a>
+{{/each}}
+{{/if}}
+
+{{#if goal}}
 {{#each goal}}
 <h1>update</h1>
 <form action="/update" method="POST">
@@ -16,8 +28,14 @@
   <input type='submit' value="update"/>
 </form>
 {{/each}}
+{{/if}}
 
 <h1>{{title}} {{update}}</h1>
 {{#if update}}
+<a href="/">go back</a>
+{{/if}}
+
+{{#if delete}}
+<h1>{{title}} {{delete}}</h1>
 <a href="/">go back</a>
 {{/if}}
