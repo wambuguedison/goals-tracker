@@ -1,12 +1,10 @@
 <h1>hello</h1>
-<ul>
-  {{#each objects}}
-  <li>{{test}}</li>
-  {{/each}}
-</ul>
 
 <ul>
   {{#each goals}}
-  <li>{{title}}</li>
+  <li>
+    {{title}}
+    <a href="/edit/:{{_id}}">edit</a>
+  </li>
   {{/each}}
 </ul>

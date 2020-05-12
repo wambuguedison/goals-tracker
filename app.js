@@ -1,8 +1,14 @@
 const express = require('express');
 const hbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 const goals = require('./models/db')
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.set('view engine', 'hbs');
 
@@ -27,11 +33,42 @@ app.get('/', (req, res, next) => {
     if(err){
       console.log(err)
     }
-    let obj3 = {
+    let object = {
       goals: docs
     }
-    res.render('index', obj3);
+    res.render('index', object);
   });
+});
+
+app.get('/edit/:id', (req, res, next) => {
+  let id = req.params.id.replace(':', '');
+  console.log(id)
+  goals.find({ _id: id }, (err, doc) => {
+    if(err) {
+      console.log(err)
+    }
+    let objects = {
+      goal: doc
+    }
+    res.render('update', objects)
+  });
+});
+
+app.put('/update', (req, res, next) => {
+  const goal = {
+    _id: req.body.id,
+    title: req.body.title,
+    description: 'goal description',
+    imageUrl: '',
+    successes: 0,
+    deleted: 0
+  };
+  console.log(goal)
+  let update = {
+    update: 'updated'
+  }
+  res.render('update', update)
+  //next()
 });
 
 module.exports = app;
