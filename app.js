@@ -128,6 +128,8 @@ app.get('/del_goal/:id', (req, res, next) => {
   });
 });
 
-
+app.use((req, res) => {
+  res.render('error');
+})
 
 module.exports = app;
