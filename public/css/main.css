@@ -12,6 +12,17 @@ body {
   float: right;
   margin-top: -2rem;
 }
+[go-back] {
+  position: fixed;
+  text-align: center;
+  bottom: 5rem;
+  right: 1rem;
+  z-index: 99;
+  font-size: 2rem;
+  margin: 0;
+  border: 0.1rem solid black;
+  border-radius: 0.6rem;
+}
 
 /* home page*/
 .goals {
@@ -26,6 +37,11 @@ body {
 /* add a goal*/
 .form-cancel {
   float: right;
+}
+
+/* error*/
+.error {
+  margin-top: 50%;
 }
 
 .footer {

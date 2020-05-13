@@ -63,6 +63,8 @@ app.post('/add_goal', (req, res, next) => {
   }
   let added = {
     title: doc.title,
+    description: doc.description,
+    id: doc._id,
     add: 'added',
     template: 'added'
   }
