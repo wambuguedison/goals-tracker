@@ -88,7 +88,7 @@ app.get('/edit/:id', (req, res, next) => {
 app.post('/update', (req, res, next) => {
   const goal = {
     title: req.body.title,
-    description: 'goal description',
+    description: req.body.description,
     imageUrl: '',
     successes: 0,
     deleted: 0
