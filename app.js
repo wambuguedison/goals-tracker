@@ -41,6 +41,16 @@ app.get('/', (req, res, next) => {
   });
 });
 
+app.get('/view/:id', (req, res, next) => {
+  let id = req.params.id.replace(':', '');
+  goals.find({ _id: id }, (err, doc) => {
+    if(err) {
+      res.send(err)
+    }
+    res.send(doc)
+  });
+})
+
 app.get('/add', (req, res, next) => {
   let add = {
     add_new: 'added',
@@ -55,7 +65,8 @@ app.post('/add_goal', (req, res, next) => {
     description: req.body.description,
     imageUrl: '',
     successes: 0,
-    deleted: 0
+    deleted: 0,
+    created_at: new Date
   };
   goals.insert(goal,(err, doc) => {
   if(err){
