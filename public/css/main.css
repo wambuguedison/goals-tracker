@@ -26,7 +26,7 @@ body {
 
 /* home page*/
 .goals {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
 }
 .goals .card {
