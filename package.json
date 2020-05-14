@@ -4,12 +4,22 @@
   "description": "simple goals tracker",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node server.js"
   },
   "keywords": [
     "goals",
     "tracker"
   ],
   "author": "eddiewaweru",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "1.19.0",
+    "nedb": "1.8.0",
+    "express-handlebars": "4.0.4"
+  },
+  "engines": {
+    "node": "13.13.0"
+  }
 }

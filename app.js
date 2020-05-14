@@ -34,15 +34,27 @@ app.get('/', (req, res, next) => {
       console.log(err)
     }
     let object = {
-      goals: docs
+      goals: docs,
+      template: 'home'
     }
     res.render('index', object);
   });
 });
 
+app.get('/view/:id', (req, res, next) => {
+  let id = req.params.id.replace(':', '');
+  goals.find({ _id: id }, (err, doc) => {
+    if(err) {
+      res.send(err)
+    }
+    res.send(doc)
+  });
+})
+
 app.get('/add', (req, res, next) => {
   let add = {
-    add_new: 'added'
+    add_new: 'added',
+    template: 'add'
   }
   res.render('add', add)
 });
@@ -53,7 +65,8 @@ app.post('/add_goal', (req, res, next) => {
     description: req.body.description,
     imageUrl: '',
     successes: 0,
-    deleted: 0
+    deleted: 0,
+    created_at: new Date
   };
   goals.insert(goal,(err, doc) => {
   if(err){
@@ -61,7 +74,10 @@ app.post('/add_goal', (req, res, next) => {
   }
   let added = {
     title: doc.title,
-    add: 'added'
+    description: doc.description,
+    id: doc._id,
+    add: 'added',
+    template: 'added'
   }
   res.render('add', added)
 })
@@ -83,7 +99,7 @@ app.get('/edit/:id', (req, res, next) => {
 app.post('/update', (req, res, next) => {
   const goal = {
     title: req.body.title,
-    description: 'goal description',
+    description: req.body.description,
     imageUrl: '',
     successes: 0,
     deleted: 0
@@ -96,7 +112,8 @@ app.post('/update', (req, res, next) => {
     }
     let update = {
       title: goal.title,
-      update: 'updated'
+      update: 'updated',
+      template: 'edit'
     }
     res.render('update', update);
   });
@@ -109,7 +126,8 @@ app.get('/delete/:id', (req, res, next) => {
       console.log(err)
     }
     let delete_object = {
-      del_goal: doc
+      del_goal: doc,
+      template: 'delete'
     }
     res.render('update', delete_object);
   });
@@ -120,7 +138,8 @@ app.get('/del_goal/:id', (req, res, next) => {
   let id = req.params.id.replace(':', '');
   goals.remove({ _id: id }, {}, (err, numRemoved) => {
     let delete_goal = {
-      delete: 'deleted'
+      delete: 'deleted',
+      template: 'deleted'
     }
     res.render('update', delete_goal);
   });

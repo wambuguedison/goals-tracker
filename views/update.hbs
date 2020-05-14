@@ -1,41 +1,108 @@
+<a go-back href="/">🔙</a>
+
 {{#if del_goal}}
 {{#each del_goal}}
-<p>Are you sure to delete {{title}}</p>
-<!--<form action="" method="POST">
-  <input type="submit" value="yes" />
-</form>-->
-<a href="/del_goal/:{{_id}}">yes</a>
-<a href="/">no</a>
+<div class="alert alert-danger mt-5" role="alert">
+  <h4 class="alert-heading">
+    Are you sure to delete this goal
+  </h4>
+  <h6>{{title}}</h6>
+  <hr>
+  <p>{{description}}</p>
+  <hr>
+  <div class="d-flex justify-content-around">
+    <a
+      class="btn btn-sm btn-primary"
+      href="/"
+    >
+      No
+    </a>
+    <a
+      class="btn btn-sm btn-danger"
+      href="/del_goal/:{{_id}}"
+    >
+      Delete
+    </a>
+   </div>
+</div>
 {{/each}}
 {{/if}}
 
 {{#if goal}}
 {{#each goal}}
-<h1>update</h1>
+<h3>Edit goal</h3>
 <form action="/update" method="POST">
-  <input
-    name="title"
-    id="title"
-    type="text"
-    value="{{title}}"
-  />
-  <input
-    name="id"
-    id="id"
-    value="{{_id}}"
-    hidden
-  />
-  <input type='submit' value="update"/>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      id="title"
+      value="{{title}}"
+      placeholder="Enter a title"
+    >
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      name="id"
+      id="id"
+      value="{{_id}}"
+      hidden
+    >
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      class="form-control"
+      id="description"
+      name="description"
+      rows="3"
+      value="{{description}}"
+    >
+    </textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">
+    Submit
+  </button>
+  <a class="btn btn-danger form-cancel" href="/">Cancel</a>
 </form>
 {{/each}}
 {{/if}}
 
-<h1>{{title}} {{update}}</h1>
 {{#if update}}
-<a href="/">go back</a>
+<div class="alert alert-success mt-5" role="alert">
+  <h4 class="alert-heading">
+    Goal {{update}} Successfully
+  </h4>
+  <h6>{{title}}</h6>
+  <div class="d-flex justify-content-around">
+    <a
+      class="btn btn-sm btn-primary"
+      href="/"
+    >
+      Home
+    </a>
+   </div>
+</div>
 {{/if}}
 
 {{#if delete}}
-<h1>{{title}} {{delete}}</h1>
-<a href="/">go back</a>
+<div class="alert alert-danger mt-5" role="alert">
+  <h4 class="alert-heading">
+    Goal {{delete}} Successfully
+  </h4>
+  <h6>{{title}}</h6>
+  <br />
+  <div class="d-flex justify-content-around">
+    <a
+      class="btn btn-sm btn-primary"
+      href="/"
+    >
+      Home
+    </a>
+   </div>
+</div>
 {{/if}}

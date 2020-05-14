@@ -1,0 +1,59 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+/* universal styles */
+.go-back {
+  float: right;
+  margin-top: -2rem;
+}
+[go-back] {
+  position: fixed;
+  text-align: center;
+  bottom: 5rem;
+  right: 1rem;
+  z-index: 99;
+  font-size: 2rem;
+  margin: 0;
+  border: 0.1rem solid black;
+  border-radius: 0.6rem;
+}
+
+/* home page*/
+.goals {
+  display: flex;
+  flex-wrap: wrap;
+}
+.goals .card {
+  margin: .5rem;
+  width: 45%;
+}
+
+/* add a goal*/
+.form-cancel {
+  float: right;
+}
+
+/* error*/
+.error {
+  margin-top: 50%;
+}
+
+.footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+.footer a:visited {
+  text-decoration: none;
+}

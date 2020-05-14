@@ -1,5 +1,4 @@
 node_modules
-models/goals.db
-goals.db
+models/trunc.js
 models/ins.js
 views/test.hbs
