@@ -18,7 +18,7 @@ $('#more-details').on('show.bs.modal', function(event) {
     modal.find('.view-body').text(goal.description);
     modal.find('.created').text('created :' + goal.created_at.toLocaleString())
   }).fail(function(jqXHR, textStatus){
-    alert('Error occurred: ');
+    alert('Error occurred: ' + textStatus);
   });
   
   var modal = $(this)
