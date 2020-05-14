@@ -1,3 +1,4 @@
 node_modules
+models/trunc.js
 models/ins.js
 views/test.hbs
