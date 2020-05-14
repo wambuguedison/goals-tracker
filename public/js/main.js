@@ -8,9 +8,10 @@ $('#more-details').on('show.bs.modal', function(event) {
   .then(res => alert(res))
   .catch(e => alert(e))
   */
+  let url = window.location.href + 'view/:' + recipient;
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:3000/view/:' + recipient
+    url: url
   }).done(function(data){
     let goal = data[0];
     modal.find('.modal-title').text(goal.title);
