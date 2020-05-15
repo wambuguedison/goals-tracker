@@ -16,7 +16,7 @@ $('#more-details').on('show.bs.modal', function(event) {
     let goal = data[0];
     modal.find('.modal-title').text(goal.title);
     modal.find('.view-body').text(goal.description);
-    modal.find('.created').text('created :' + goal.created_at.toLocaleString())
+    modal.find('.created').text('Created on : ' + goal.created_at.toLocaleString())
   }).fail(function(jqXHR, textStatus){
     alert('Error occurred: ' + textStatus);
   });
