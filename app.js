@@ -24,6 +24,12 @@ app.engine( 'hbs', hbs({
       }
 
       return description.substring(0, 17) + '...';
+    },
+    checkGoals (goals) {
+      if (goals.length === 0) {
+        return "no goals... please add."
+      }
+      return "";
     }
   }
 }));
