@@ -75,7 +75,7 @@ app.post('/add_goal', (req, res, next) => {
     imageUrl: '',
     successes: 0,
     deleted: 0,
-    created_at: new Date
+    created_at: new Date().toDateString()
   };
   goals.insert(goal,(err, doc) => {
   if(err){
