@@ -158,6 +158,15 @@ app.get('/del_goal/:id', (req, res, next) => {
   });
 });
 
+app.delete('/delete_all', (req, res, next) => {
+  goals.remove({}, { multi: true }, (err, numRemoved) => {
+    if(err) {
+      console.log(err)
+    }
+    res.send(String(numRemoved));
+  });
+});
+
 app.use((req, res) => {
   res.render('error');
 })
