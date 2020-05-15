@@ -35,15 +35,29 @@ const delete_all_no = () => {
 
 const delete_all_conf = () => {
   let delete_conf = document.getElementById("delete-alert");
-  delete_conf.style.setProperty('display','block')
-/*
-  let url = window.location.href + 'delete_all/';
+  delete_conf.style.setProperty('display','block');
+}
+
+const delete_all_true = () => {
+  let url = window.location.href + 'delete_all'
+  let delete_conf = document.getElementById("delete-alert");
+  delete_conf.style.setProperty('display','none');
+  let deleted_goals = document.getElementById("deleted-goals");
+  deleted_goals.style.setProperty('display','block')
+  
   fetch(url, {
       method: 'DELETE'
     }
   ).then(res => res.text())
   .then(data => {
-    
+    $('.goals').html('')
+    let goals = Number(data) > 1 ? ' goals' : ' goal'
+    deleted_goals.innerHTML = data + goals + ' deleted!';
+    setTimeout(() => {
+      deleted_goals.style.setProperty('display','none')
+    }, 3000)
+    setTimeout(() => {
+      window.location.href = window.location.href;
+    }, 3000)
   }).catch(err => alert(err))
-  */
 }
