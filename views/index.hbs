@@ -2,6 +2,9 @@
 
 <a class="btn btn-primary pl-5 pr-5 ml-5" href='/add'>Add a goal</a>
 
+<h4 class="text-warning text-center mt-5">
+  {{checkGoals goals}}
+</h4>
 <div class="goals">
 {{#each goals}}
 <div class="card">
@@ -48,8 +51,25 @@
         <span class="created"></span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <a
+          type="button"
+          class="btn btn-warning edit"
+        >
+          Edit
+        </a>
+        <a
+          type="button"
+          class="btn btn-danger delete"
+        >
+          Delete
+        </a>
+        <a
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </a>
       </div>
     </div>
   </div>
