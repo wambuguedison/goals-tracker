@@ -24,12 +24,6 @@ app.engine( 'hbs', hbs({
       }
 
       return description.substring(0, 17) + '...';
-    },
-    checkGoals (goals) {
-      if (goals.length === 0) {
-        return "no goals... please add."
-      }
-      return "";
     }
   }
 }));
@@ -50,7 +44,11 @@ app.get('/', (req, res, next) => {
     }
     let object = {
       goals: docs,
-      template: 'home'
+      template: 'home',
+      goals_present: false
+    }
+    if (docs.length > 0) {
+      object.goals_present = true;
     }
     res.render('index', object);
   });

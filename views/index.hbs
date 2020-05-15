@@ -1,10 +1,25 @@
 <h1>Hello</h1>
 
-<a class="btn btn-primary pl-5 pr-5 ml-5" href='/add'>Add a goal</a>
+<div class="d-flex">
+  <a class="btn btn-sm btn-primary pl-5 pr-5 ml-3 mr-3" href='/add'>Add a Goal</a>
+  {{#if goals_present}}
+  <a
+    class="btn btn-sm btn-danger pl-5 pr-5 ml-3 mr-3"
+   
+  >
+    Delete All
+  </a>
+  {{/if}}
+</div>
+<hr class="mt-2 mb-1">
 
+{{#unless goals_present}}
 <h4 class="text-warning text-center mt-5">
-  {{checkGoals goals}}
+  No goals.
+  Please add.
 </h4>
+{{/unless}}
+
 <div class="goals">
 {{#each goals}}
 <div class="card">
