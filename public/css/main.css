@@ -43,6 +43,9 @@ body {
   margin-right: 1rem;
   z-index: 99;
 }
+#deleted-goals {
+  display: none;
+}
 
 /* add a goal*/
 .form-cancel {
