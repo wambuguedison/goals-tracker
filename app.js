@@ -16,7 +16,16 @@ app.engine( 'hbs', hbs({
   extname: 'hbs',
   defaultView: 'main',
   layoutsDir: __dirname + '/views/layouts/',
-  partialsDir: __dirname + '/views/partials/'
+  partialsDir: __dirname + '/views/partials/',
+  helpers: {
+    shortenDescription (description) {
+      if (description.length < 20) {
+          return description;
+      }
+
+      return description.substring(0, 17) + '...';
+    }
+  }
 }));
 
 app.use(express.static('public'));
