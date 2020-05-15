@@ -27,3 +27,23 @@ $('#more-details').on('show.bs.modal', function(event) {
   
   modal.find('.modal-body input').val(recipient)
 })
+
+const delete_all_no = () => {
+  let delete_conf = document.getElementById("delete-alert");
+  delete_conf.style.setProperty('display','none')
+}
+
+const delete_all_conf = () => {
+  let delete_conf = document.getElementById("delete-alert");
+  delete_conf.style.setProperty('display','block')
+/*
+  let url = window.location.href + 'delete_all/';
+  fetch(url, {
+      method: 'DELETE'
+    }
+  ).then(res => res.text())
+  .then(data => {
+    
+  }).catch(err => alert(err))
+  */
+}

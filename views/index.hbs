@@ -3,12 +3,12 @@
 <div class="d-flex">
   <a class="btn btn-sm btn-primary pl-5 pr-5 ml-3 mr-3" href='/add'>Add a Goal</a>
   {{#if goals_present}}
-  <a
+  <button
     class="btn btn-sm btn-danger pl-5 pr-5 ml-3 mr-3"
-   
+    onclick="delete_all_conf()"
   >
     Delete All
-  </a>
+  </button>
   {{/if}}
 </div>
 <hr class="mt-2 mb-1">
@@ -42,6 +42,30 @@
 {{/each}}
 </div><!--goals-->
 
+
+<!-- delete all confirmation -->
+<div
+  id="delete-alert"
+  class="alert alert-danger"
+  role="alert"
+>
+  <h4 class="alert-heading">Are you sure!</h4>
+  <p>Do you really want to delete all your goals</p>
+  <hr>
+  <div class="d-flex justify-content-around">
+    <button
+      class="btn btn-sm btn-secondary pl-5 pr-5 ml-3 mr-3"
+      onclick="delete_all_no()"
+    >
+      No
+    </button>
+    <button
+      class="btn btn-sm btn-danger pl-5 pr-5 ml-3 mr-3"
+    >
+      Yes
+    </button>
+  </div>
+</div>
 
 <!-- Modal -->
 <div
