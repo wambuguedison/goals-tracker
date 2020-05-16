@@ -1,6 +1,4 @@
 const express = require('express');
-const hbs = require('express-handlebars');
-const bodyParser = require('body-parser');
 
 const controllers = require('../controllers/goals')
 
