@@ -3,7 +3,8 @@ const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const goals = require('./models/db')
 
-const router = require('./routes/goals')
+const routes = require('./routes/goals')
+const userRoutes = requires('./routes/users')
 
 const app = express();
 
@@ -39,7 +40,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('', router);
+app.use('', routes);
+app.use('/auth', userRoutes)
 
 app.use((req, res) => {
   res.render('error');
