@@ -6,7 +6,7 @@ exports.signup = (req, res, next) => {
   let email = req.body.email,
     password = req.body.password;
   
-  users.findOne({ email: email }, function (err, doc) {
+  users.findOne({ email: email }, (err, doc) => {
     if (err) {
       res.send(err)
     }
@@ -19,12 +19,32 @@ exports.signup = (req, res, next) => {
         if(err){
           res.send(err)
         }
-        res.send(doc)
+        res.status(201).send(doc)
       })
     }
   });
 };
 
-/*exports.login = (req, res, next) => {
-
-};*/
+exports.login = (req, res, next) => {
+  let email = req.body.email,
+    password = req.body.password;
+    
+  users.findOne({ email: email }, (err, doc) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+    if (doc == null) {
+      res.status(401).send("no such user")
+    } 
+    else {
+      if (doc.password !== password) {
+        res.status(401).send("password doesn't match")
+      } else {
+        res.status(200).json({
+          userId: doc._id,
+          token: 'token'
+        })
+      }
+    }
+  });
+};
