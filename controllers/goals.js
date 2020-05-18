@@ -1,4 +1,5 @@
-const goals = require('../models/db');
+const db = require('../models/db');
+const goals = db.goals;
 
 exports.view_all = (req, res, next) => {
   goals.find({}, (err, docs) => {
