@@ -1,10 +1,9 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const goals = require('./models/db')
 
-const routes = require('./routes/goals')
-const userRoutes = requires('./routes/users')
+const routes = require('./routes/goals');
+const userRoutes = require('./routes/users');
 
 const app = express();
 
