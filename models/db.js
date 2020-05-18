@@ -1,5 +1,5 @@
 const nedb = require('nedb')
 
-db = new nedb({ filename: './models/goals.db', autoload: true });
+exports.goals = new nedb({ filename: './models/goals.db', autoload: true });
 
-module.exports = db
+exports.users = new nedb({ filename: './models/users.db', autoload: true })
