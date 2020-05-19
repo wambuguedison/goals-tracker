@@ -3,8 +3,9 @@ const express = require('express');
 const controllers = require('../controllers/goals')
 
 const router = express.Router()
+const auth = require('../middleware/auth');
 
-router.get('/', controllers.view_all);
+router.get('/', auth, controllers.view_all);
 router.get('/view/:id', controllers.view_details)
 router.get('/add', controllers.add_page);
 router.post('/add_goal', controllers.add_goal);
