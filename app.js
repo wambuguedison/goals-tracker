@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const routes = require('./routes/goals');
 const userRoutes = require('./routes/users');
@@ -11,6 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+app.use(cookieParser());
 
 app.set('view engine', 'hbs');
 
@@ -40,7 +43,7 @@ app.use((req, res, next) => {
 });
 
 app.use('', routes);
-app.use('/auth', userRoutes)
+app.use('/auth', userRoutes);
 
 app.use((req, res) => {
   res.render('error');
