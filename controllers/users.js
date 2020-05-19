@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const db = require('../models/db');
 const users = db.users
 
@@ -40,10 +41,12 @@ exports.login = (req, res, next) => {
       if (doc.password !== password) {
         res.status(401).send("password doesn't match")
       } else {
-        res.status(200).json({
-          userId: doc._id,
-          token: 'token'
-        })
+        const token = jwt.sign(
+            { userId: doc._id },
+            'RANDOM_TOKEN_SECRET',
+            { expiresIn: '1h' });
+        res.cookie('AuthToken', token)
+        res.redirect('/');
       }
     }
   });
