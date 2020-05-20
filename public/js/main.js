@@ -1,4 +1,7 @@
 'use strict'
+
+// details modal
+
 $('#more-details').on('show.bs.modal', function(event) {
   let button = $(event.relatedTarget) // Button that triggered the modal
   let recipient = button.data('whatever')
@@ -22,6 +25,8 @@ $('#more-details').on('show.bs.modal', function(event) {
   
   modal.find('.modal-body input').val(recipient)
 })
+
+// delete all goals
 
 const delete_all_no = () => {
   let delete_conf = document.getElementById("delete-alert");
@@ -55,4 +60,17 @@ const delete_all_true = () => {
       window.location.href = window.location.href;
     }, 3000)
   }).catch(err => alert(err))
+}
+
+// form validate
+const validate_signup = () => {
+  password = document.getElementById("password");
+  password_conf = document.getElementById("password_conf");
+  pass_error = document.getElementById("pass_error");
+  
+  if (password.value !== password_conf.value) {
+    pass_error.innerHTML = 'Passwords do not match';
+    return false;
+  }
+  return true;
 }
