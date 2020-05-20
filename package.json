@@ -1,5 +1,5 @@
 {
-  "name": "Goals Tracker",
+  "name": "Goals-Tracker",
   "version": "1.0.0",
   "description": "simple goals tracker",
   "main": "server.js",
