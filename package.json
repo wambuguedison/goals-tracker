@@ -20,7 +20,7 @@
     "express-handlebars": "4.0.4",
     "jsonwebtoken": "8.5.1",
     "cookie-parser": "1.4.5",
-    "bycrptjs": "2.4.3"
+    "bcryptjs": "2.4.3"
   },
   "engines": {
     "node": "13.13.0"
