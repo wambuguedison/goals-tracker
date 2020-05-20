@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const db = require('../models/db');
+const users = db.users
 
 module.exports = (req, res, next) => {
   const token = req.cookies['AuthToken'];
@@ -8,7 +10,15 @@ module.exports = (req, res, next) => {
     if (req.body.userId && req.body.userId !== userId) {
       res.status(401).send('Invalid user ID');
     } else {
-      next();
+      req.id = userId;
+      users.findOne({ _id: userId }, (err, doc) => {
+        if(err) {
+          console.log(err)
+        }
+        req.name = doc.name;
+        req.id = userId;
+        next();
+      });
     }
   } else {
     res.render('login');
