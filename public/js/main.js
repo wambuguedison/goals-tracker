@@ -1,13 +1,8 @@
 'use strict'
 $('#more-details').on('show.bs.modal', function(event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever')
+  let button = $(event.relatedTarget) // Button that triggered the modal
+  let recipient = button.data('whatever')
   
-  /*alert(recipient)
-  fetch('http://localhost:3000/view/:' + recipient)
-  .then(res => alert(res))
-  .catch(e => alert(e))
-  */
   let url = window.location.href + 'view/:' + recipient;
   $.ajax({
     type: 'GET',
