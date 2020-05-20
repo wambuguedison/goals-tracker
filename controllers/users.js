@@ -54,23 +54,17 @@ exports.login = (req, res, next) => {
                 { userId: doc._id },
                 'RANDOM_TOKEN_SECRET',
                 { expiresIn: '24h' });
-            res.cookie('AuthToken', token)
+            res.cookie('AuthToken', token, { maxAge: 60000 * 24 })
             res.redirect('/');
           }
         });
       } catch (e) {
         res.send(e)
-      }/*
-      if (doc.password !== password) {
-        res.status(401).send("password doesn't match")
-      } else {
-        const token = jwt.sign(
-            { userId: doc._id },
-            'RANDOM_TOKEN_SECRET',
-            { expiresIn: '24h' });
-        res.cookie('AuthToken', token)
-        res.redirect('/');
-      }*/
+      }
     }
   });
 };
+
+exports.logout = (req, res, next) => {
+  res.clearCookie('AuthToken').send('logged out');
+}
