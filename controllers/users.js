@@ -101,5 +101,7 @@ exports.login_form = (req, res, next) => {
 }
 
 exports.logout = (req, res, next) => {
-  res.clearCookie('AuthToken').send('logged out');
+  res.clearCookie('AuthToken');
+  res.clearCookie('Name');
+  res.redirect('/');
 }
