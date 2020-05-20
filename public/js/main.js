@@ -64,9 +64,9 @@ const delete_all_true = () => {
 
 // form validate
 const validate_signup = () => {
-  password = document.getElementById("password");
-  password_conf = document.getElementById("password_conf");
-  pass_error = document.getElementById("pass_error");
+  let password = document.getElementById("password");
+  let password_conf = document.getElementById("password_conf");
+  let pass_error = document.getElementById("pass_error");
   
   if (password.value !== password_conf.value) {
     pass_error.innerHTML = 'Passwords do not match';
@@ -74,3 +74,21 @@ const validate_signup = () => {
   }
   return true;
 }
+
+// password view
+const pass_view = document.getElementById("pass_view")
+
+pass_view.addEventListener("click", () => {
+  let password = document.getElementById("password");
+  let password_conf = document.getElementById("password_conf");
+  if (password.type === 'password') {
+    password.type = "text"
+    password_conf.type = "text"
+    return;
+  }
+  if (password.type === 'text') {
+    password.type = "password"
+    password_conf.type = "password"
+    return;
+  }
+})
