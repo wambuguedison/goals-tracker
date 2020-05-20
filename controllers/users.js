@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const db = require('../models/db');
 const users = db.users
 
@@ -15,13 +16,19 @@ exports.signup = (req, res, next) => {
       res.send("email is already used")
     } else {
       user.email = email;
-      user.password = password;
-      users.insert(user, (err, doc) => {
-        if(err){
-          res.send(err)
-        }
-        res.status(201).send(doc)
-      })
+      
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+          // Store hash in your password DB
+          user.password = hash
+          users.insert(user, (err, doc) => {
+            if(err){
+              res.send(err)
+            }
+            res.status(201).send(doc)
+          })
+        });
+      }); 
     }
   });
 };
@@ -36,18 +43,34 @@ exports.login = (req, res, next) => {
     }
     if (doc == null) {
       res.status(401).send("no such user")
-    } 
-    else {
+    } else {
+      try {
+        bcrypt.compare(password, doc.password)
+        .then((resp) => {
+          if(!resp) {
+            res.status(401).send("password doesn't match") 
+          } else {
+            const token = jwt.sign(
+                { userId: doc._id },
+                'RANDOM_TOKEN_SECRET',
+                { expiresIn: '24h' });
+            res.cookie('AuthToken', token)
+            res.redirect('/');
+          }
+        });
+      } catch (e) {
+        res.send(e)
+      }/*
       if (doc.password !== password) {
         res.status(401).send("password doesn't match")
       } else {
         const token = jwt.sign(
             { userId: doc._id },
             'RANDOM_TOKEN_SECRET',
-            { expiresIn: '1h' });
+            { expiresIn: '24h' });
         res.cookie('AuthToken', token)
         res.redirect('/');
-      }
+      }*/
     }
   });
 };
