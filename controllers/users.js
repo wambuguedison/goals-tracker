@@ -56,20 +56,29 @@ exports.login = (req, res, next) => {
     if (err) {
       res.status(500).send(err)
     }
-    if (doc == null) {
-      res.status(401).send("no such user")
+    if (doc == null || !doc) {
+      res.render('login', {
+        email: email,
+        password: password,
+        no_user: "no such user"
+      });
     } else {
       try {
         bcrypt.compare(password, doc.password)
         .then((resp) => {
           if(!resp) {
-            res.status(401).send("password doesn't match") 
+            res.render('login', {
+              email: email,
+              password: password,
+              incorrect_pass: "Incorrect password"
+            })
           } else {
             const token = jwt.sign(
                 { userId: doc._id },
                 'RANDOM_TOKEN_SECRET',
                 { expiresIn: '24h' });
             res.cookie('AuthToken', token, { maxAge: 60000 * 24 })
+            res.cookie('Name', doc.name, { maxAge: 60000 * 24 })
             res.redirect('/');
           }
         })
