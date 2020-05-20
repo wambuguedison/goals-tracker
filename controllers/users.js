@@ -65,6 +65,14 @@ exports.login = (req, res, next) => {
   });
 };
 
+exports.signup_form = (req, res, next) => {
+  res.render('signup')
+}
+
+exports.login_form = (req, res, next) => {
+  res.render('login')
+}
+
 exports.logout = (req, res, next) => {
   res.clearCookie('AuthToken').send('logged out');
 }
