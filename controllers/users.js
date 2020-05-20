@@ -14,7 +14,13 @@ exports.signup = (req, res, next) => {
       res.send(err)
     }
     if (doc !== null) {
-      res.render('signup', { message: "Email is already used" })
+      let info = {
+        name: name,
+        email: email,
+        password: password,
+        message: "Email is already used"
+      }
+      res.render('signup', info)
     } else {
       user.name = name;
       user.email = email;
