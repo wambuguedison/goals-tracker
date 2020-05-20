@@ -5,7 +5,8 @@ const users = db.users
 
 exports.signup = (req, res, next) => {
   const user = {}
-  let email = req.body.email,
+  let name = req.body.name,
+    email = req.body.email,
     password = req.body.password;
   
   users.findOne({ email: email }, (err, doc) => {
@@ -13,19 +14,27 @@ exports.signup = (req, res, next) => {
       res.send(err)
     }
     if (doc !== null) {
-      res.send("email is already used")
+      res.render('signup', { message: "Email is already used" })
     } else {
+      user.name = name;
       user.email = email;
       
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
           // Store hash in your password DB
-          user.password = hash
+          if(err) {
+            res.send(err)
+          }
+          user.password = hash;
           users.insert(user, (err, doc) => {
             if(err){
               res.send(err)
             }
-            res.status(201).send(doc)
+            let login = {
+              email: email,
+              password: password
+            }
+            res.render('login', login)
           })
         });
       }); 
@@ -57,6 +66,9 @@ exports.login = (req, res, next) => {
             res.cookie('AuthToken', token, { maxAge: 60000 * 24 })
             res.redirect('/');
           }
+        })
+        .catch(e => {
+          console.log(e)
         });
       } catch (e) {
         res.send(e)
