@@ -2,7 +2,7 @@ const db = require('../models/db');
 const goals = db.goals;
 
 exports.view_all = (req, res, next) => {
-  goals.find({}, (err, docs) => {
+  goals.find({ user: req.id }, (err, docs) => {
     if(err){
       console.log(err)
     }
@@ -44,7 +44,7 @@ exports.add_goal = (req, res, next) => {
     imageUrl: '',
     successes: 0,
     deleted: 0,
-    goal: true,
+    user: req.id,
     created_at: new Date().toDateString()
   };
   goals.insert(goal,(err, doc) => {
@@ -81,7 +81,9 @@ exports.update = (req, res, next) => {
     description: req.body.description,
     imageUrl: '',
     successes: 0,
-    deleted: 0
+    deleted: 0,
+    user: req.id,
+    created_at: new Date().toDateString()
   };
   goals.update({_id: req.body.id}, goal, {}, (err, numReplaced) => {
     if(err){
@@ -124,7 +126,7 @@ exports.delete_goal = (req, res, next) => {
 }
 
 exports.delete_all = (req, res, next) => {
-  goals.remove({}, { multi: true }, (err, numRemoved) => {
+  goals.remove({ user: req.id }, { multi: true }, (err, numRemoved) => {
     if(err) {
       console.log(err)
     }
