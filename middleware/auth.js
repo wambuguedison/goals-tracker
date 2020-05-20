@@ -16,7 +16,6 @@ module.exports = (req, res, next) => {
           console.log(err)
         }
         req.name = doc.name;
-        req.id = userId;
         next();
       });
     }
