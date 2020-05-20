@@ -1,6 +1,10 @@
 <h1 class="text-center m-3">Sign Up</h1>
 
-<form action="/auth/signup" method="POST">
+<form
+  onsubmit="return validate_signup()"
+  action="/auth/signup"
+  method="POST"
+>
   <div class="form-group">
     <label for="email">Name</label>
     <input
@@ -9,6 +13,7 @@
       id="name"
       name="name"
       placeholder="Enter name"
+      value="{{ name }}"
       required
     />
   </div>
@@ -20,6 +25,7 @@
       id="email"
       name="email"
       placeholder="Enter email"
+      value="{{ email }}"
       required
     />
     <span class="text-danger">{{ message }}</span>
@@ -33,6 +39,7 @@
         id="password"
         name="password"
         placeholder="Password"
+        value="{{ password }}"
         required
       />
       <div class="input-group-append">
@@ -45,11 +52,13 @@
     <input
       type="password"
       class="form-control"
-      id="password-conf"
+      id="password_conf"
       name="password-conf"
       placeholder="Confirm password"
+      value="{{ password }}"
       required
     />
+    <span class="text-danger" id="pass_error"></span>
   </div>
   <button
     type="submit"
