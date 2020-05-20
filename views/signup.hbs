@@ -1,0 +1,63 @@
+<h1 class="text-center m-3">Sign Up</h1>
+
+<form action="/auth/signup" method="POST">
+  <div class="form-group">
+    <label for="email">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      placeholder="Enter name"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter email"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <div class="input-group mb-2">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        required
+      />
+      <div class="input-group-append">
+        <div class="input-group-text">🙈🤓</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password-conf">Confirm Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password-conf"
+      name="password-conf"
+      placeholder="Confirm password"
+      required
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+  />
+    Sign Me Up
+  </button>
+</form>
+
+<p class="text-center mt-3">
+ Already have an account? &nbsp;
+ <a href="/auth/login_form">Login here...</a>
+</p>
