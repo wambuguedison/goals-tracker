@@ -7,6 +7,7 @@ exports.view_all = (req, res, next) => {
       console.log(err)
     }
     let object = {
+      name: req.name,
       goals: docs,
       template: 'home',
       goals_present: false
