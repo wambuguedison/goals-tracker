@@ -43,11 +43,13 @@ $('.mark_as_done').on('click', () => {
   if ($('.mark_as_done').attr('done') == '0') {
     $('.mark_as_done').attr('done', '1');
     $('.mark_as_done').text('Mark as not done');
+    $('.done_tag').text('done');
     return;
   };
   if ($('.mark_as_done').attr('done') == '1') {
     $('.mark_as_done').attr('done', '0');
     $('.mark_as_done').text('Mark as done');
+    $('.done_tag').text('not done');
     return;
   };
 });
