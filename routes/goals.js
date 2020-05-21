@@ -6,7 +6,8 @@ const router = express.Router()
 const auth = require('../middleware/auth');
 
 router.get('/', auth, controllers.view_all);
-router.get('/view/:id', auth, controllers.view_details)
+router.get('/view/:id', auth, controllers.view_details);
+router.post('/done', auth, controllers.done)
 router.get('/add', auth, controllers.add_page);
 router.post('/add_goal', auth, controllers.add_goal);
 router.get('/edit/:id', auth, controllers.edit);
