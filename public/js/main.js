@@ -12,9 +12,22 @@ $('#more-details').on('show.bs.modal', function(event) {
     url: url
   }).done(function(data){
     let goal = data[0];
+    if (goal.done == 0) {
+      modal.find('.mark_as_done').text('Mark as done');
+      modal.find('.mark_as_done').addClass('btn-primary');
+      modal.find('.mark_as_done').removeClass('btn-secondary');
+    }
+    if (goal.done == 1) {
+      modal.find('.mark_as_done').text('Mark as not done');
+      modal.find('.mark_as_done').addClass('btn-secondary');
+      modal.find('.mark_as_done').removeClass('btn-primary');
+    }
     modal.find('.modal-title').text(goal.title);
     modal.find('.view-body').text(goal.description);
     modal.find('.created').text('Created on : ' + goal.created_at);
+    modal.find('.done').text('Done : ' + goal.done);
+    modal.find('.mark_as_done').attr('done', goal.done);
+    modal.find('.mark_as_done').attr('id', goal._id);
     modal.find('.edit').attr('href', '/edit/:' + goal._id);
     modal.find('.delete').attr('href', '/delete/:' + goal._id);
   }).fail(function(jqXHR, textStatus){
@@ -24,7 +37,33 @@ $('#more-details').on('show.bs.modal', function(event) {
   var modal = $(this)
   
   modal.find('.modal-body input').val(recipient)
-})
+});
+
+$('.mark_as_done').on('click', () => {
+  $('.mark_as_done').toggleClass("btn-primary btn-secondary");
+  if ($('.mark_as_done').attr('done') == '0') {
+    $('.mark_as_done').attr('done', '1');
+    return;
+  };
+  if ($('.mark_as_done').attr('done') == '1') {
+    $('.mark_as_done').attr('done', '0');
+    return;
+  };
+});
+
+$('#more-details').on('hidden.bs.modal', function (e) {
+  let url = window.location.href + 'done'
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+      id: $('.mark_as_done').attr('id'),
+      done: $('.mark_as_done').attr('done')
+    }
+  }).done(function(data) {
+    return
+  })
+});
 
 // delete all goals
 
