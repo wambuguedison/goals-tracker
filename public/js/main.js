@@ -25,7 +25,6 @@ $('#more-details').on('show.bs.modal', function(event) {
     modal.find('.modal-title').text(goal.title);
     modal.find('.view-body').text(goal.description);
     modal.find('.created').text('Created on : ' + goal.created_at);
-    modal.find('.done').text('Done : ' + goal.done);
     modal.find('.mark_as_done').attr('done', goal.done);
     modal.find('.mark_as_done').attr('id', goal._id);
     modal.find('.edit').attr('href', '/edit/:' + goal._id);
@@ -43,10 +42,12 @@ $('.mark_as_done').on('click', () => {
   $('.mark_as_done').toggleClass("btn-primary btn-secondary");
   if ($('.mark_as_done').attr('done') == '0') {
     $('.mark_as_done').attr('done', '1');
+    $('.mark_as_done').text('Mark as not done');
     return;
   };
   if ($('.mark_as_done').attr('done') == '1') {
     $('.mark_as_done').attr('done', '0');
+    $('.mark_as_done').text('Mark as done');
     return;
   };
 });
