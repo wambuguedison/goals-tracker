@@ -37,12 +37,26 @@ exports.add_page = (req, res, next) => {
   res.render('add', add)
 }
 
+exports.done = (req, res, next) => {
+  let id = req.body.id,
+    done = req.body.done;
+    
+  goals.update({ _id: id }, { $set: { done: done } }, {}, (err, numReplaced) => {
+    if(err) {
+      res.send(err)
+    }
+    res.send(String(numReplaced))
+  // numReplaced = 3
+  // Field 'system' on Mars, Earth, Jupiter now has value 'solar system'
+  });
+}
+
 exports.add_goal = (req, res, next) => {
   const goal = {
     title: req.body.title,
     description: req.body.description,
     imageUrl: '',
-    successes: 0,
+    done: 0,
     deleted: 0,
     user: req.id,
     created_at: new Date().toDateString()
@@ -80,7 +94,7 @@ exports.update = (req, res, next) => {
     title: req.body.title,
     description: req.body.description,
     imageUrl: '',
-    successes: 0,
+    done: 0,
     deleted: 0,
     user: req.id,
     created_at: new Date().toDateString()
